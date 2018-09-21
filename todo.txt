@@ -1,0 +1,44 @@
+- clean project folder and remove unnecessary files (DONE)
+- write a python/bash script to run and save info about desired range
+- comment code (DONE)
+- delete test file (DONE)
+- allow / after knot name
+- rename rectangle.* to rect.* and refactor (DONE)
+- format using cs2 and comment (DONE)
+    - include (DONE)
+	- cgen.h (DONE)
+	- cgrp.h (DONE)
+	- diff.h (DONE)
+	- expsni.h (DONE)
+	- gridgen.h (DONE)
+	- grid.h (DONE)
+	- gridio.h (DONE)
+	- hom.h (DONE)
+	- jta.h (DONE)
+	- rect.h (DONE)
+    - src (DONE)
+	- cgen.cpp (DONE)
+	- cgrp.cpp (DONE)
+	- diffcmd.cpp (DONE)
+	- diff.cpp (DONE)
+	- expsni.cpp (DONE)
+	- gencmd.cpp (DONE)
+	- grid.cpp (DONE)
+	- gridgen.cpp (DONE)
+	- gridio.cpp (DONE)
+	- hfkmcmd.cpp (DONE)
+	- hom.cpp (DONE)
+	- itopcmd.cpp (DONE)
+	- jta.cpp (DONE)
+	- rect.cpp (DONE)
+	- rectcmd.cpp
+- clean makefile and test that it works
+- run over knots that are non alternating
+- make poster
+- make version for linux, mac and windows
+    - Mac
+    - Linux
+    - Windows
+- remove unused dependencies (HOW DO???)
+- message Bobby about NTL (DONE)
+- predict time of computation.
