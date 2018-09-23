@@ -91,9 +91,9 @@ vector < int > diff::get_rect_olst (grid g, rectangle r) {
 }
 
 void diff::update (grid g, int deg) {
-    try {
-        ui_hash.at(deg);
-    } catch (const out_of_range& e) {
+    if (ui_hash.count(deg) == 0) {
+        /* cout << "(DEBUGGING) ADDED ui_hash at deg = " << to_string(deg) << 
+            "\n"; */
         ui_hash[deg] = all_ni(g.get_k(), deg);
     }
     /* cout << "(DEBUGGING) Updated ui_hash at deg = " << 

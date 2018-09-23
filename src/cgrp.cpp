@@ -48,11 +48,12 @@ void cgrp::add_all_relevant_gens_to_basis (int da) {
     int num_ni = exps.size();
     /* Read all base gens from file, and save D indices. */
     for (int i = 0; i < num_bg; i++) {
-        base_gens.push_back(base_gens_read[i]);
-        base_gens[i].set_D_index(added);
-        base_gens[i].set_deg_diff(da);
-        base_gens[i].set_a(a_add);
+        cgen x = base_gens_read[i];
+        x.set_D_index(added);
+        x.set_deg_diff(da);
+        x.set_a(a_add);
         added += num_ni;
+        base_gens.push_back(x);
     }
     /* Save the rest of the generators. */
     for (int i = 0; i < num_bg; i++) {
