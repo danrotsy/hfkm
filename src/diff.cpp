@@ -37,6 +37,11 @@ diff::diff (grid g, cgrp dom, cgrp ran) {
                     bool r2valid = is_valid(g, r2, x, y);
                     /* ... and only one rectangle is valid: */
                     if (r1valid != r2valid) {
+                        /* cout << "Flow found at: x = " << x.tos() << ", y = "
+                            << y.tos() << ", x.a = " << to_string(x.get_a())
+                            << ", y.a = " << to_string(y.get_a()) << 
+                            ", x.m = " << to_string(x.get_m()) << 
+                            ", y.m = " << to_string(y.get_m()) << "\n"; */
                         /* Find intersection points of valid rectangle: */
                         vector < int > olst;
                         if (r1valid) {
@@ -45,7 +50,22 @@ diff::diff (grid g, cgrp dom, cgrp ran) {
                             olst = get_rect_olst(g, r2);
                         }
                         /* Edit block corresponding to (x, y). */
-                        gen_block(g, x, y, olst); 
+                        gen_block(g, x, y, olst);
+                    }
+                    if (r1valid and r2valid) {
+                        /* cout << "Two valid rectangles. \n"; */
+                        vector < int > r1olst = get_rect_olst(g, r1);
+                        vector < int > r2olst = get_rect_olst(g, r2);
+                        if (r1olst != r2olst) {
+                            /* cout << "Two flows found at: x = " << x.tos() <<
+                                ", y = " << y.tos() << ", x.a = " << 
+                                to_string(x.get_a()) << ", y.a = " << 
+                                to_string(y.get_a()) << ", x.m = " <<
+                                to_string(x.get_m()) << ", y.m = " <<
+                                to_string(y.get_m()) << "\n"; */
+                            gen_block(g, x, y, r1olst);
+                            gen_block(g, x, y, r2olst);
+                        }
                     }
                 }
                 ++d_progress;

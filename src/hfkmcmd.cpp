@@ -96,11 +96,14 @@ int main(int argc, char** argv) {
             Q = transpose(Q);
             cout << "Reducing the kernel by the image...\n";
             long rkQ = gauss(Q);
+            /* cout << "(DEBUGGING) dim K = " << to_string(dimK) << ", dim I = "
+                << to_string(dimI) << ", rkQ = " << to_string(rkQ) << "\n"; */
             if (dimI != rkQ) {
                 /* Find pivot columns. */
                 vector < long > pcols; /* Only stores columns of kernel */
                 long pcol = 0;
                 long qrows = Q.NumRows();
+                long qcols = Q.NumCols();
                 for (long i = 0; i < rkQ; i++) {
                     for (long j = pcol; j < qrows; j++) {
                         if (IsOne(Q[i][j])) {
@@ -112,16 +115,28 @@ int main(int argc, char** argv) {
                         }
                     }
                 }
+                /* cout << "(DEBUGGING) gauss(Q) = \n" << Q << "\n";
+                cout << "(DEBUGGING) pcols: \n";
+                for (int i = 0; i < pcols.size(); i++) {
+                    cout << "(DEBUGGING) " << to_string(i) << ", " << 
+                        to_string(pcols[i]) << "\n";
+                } */
                 /* Augment h_basis to store pivot columns of K in Q. */
+                /* cout << "(DEBUGGING) K: " <<  to_string(K.NumRows()) <<
+                    "x" << to_string(K.NumCols()) << "\n" << K << "\n"; */
                 for (long i = 0; i < (rkQ - dimI); i++) {
                     vector < bool > tmp;
+                    /* cout << "(DEBUGGING) h_basis[" << to_string(i) << "] = "; */ 
                     for (long j = 0; j < qrows; j++) {
                         if (IsOne(K[pcols[i] - dimI][j])) {
                             tmp.push_back(1);
+                            /* cout << "1 "; */
                         } else {
                             tmp.push_back(0);
+                            /* cout << "0 "; */
                         }
                     }
+                    /* cout << "\n"; */
                     h_basis.push_back(tmp);
                 }
             } else { /* Quotient is trivial. */

@@ -52,6 +52,7 @@ void cgrp::add_all_relevant_gens_to_basis (int da) {
         x.set_D_index(added);
         x.set_deg_diff(da);
         x.set_a(a_add);
+        x.set_m(m_add);
         added += num_ni;
         base_gens.push_back(x);
     }
