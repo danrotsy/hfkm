@@ -21,11 +21,19 @@ int cgen::get_a () const { return a; }
 
 int cgen::get_m () const { return m; }
 
+int cgen::get_deg_diff () const { return deg_diff; }
+
+int cgen::get_D_index () const { return D_index; }
+
 vector < int > cgen::get_n_i () const { return n_i; }
 
 void cgen::set_a (int a_new) { a = a_new; }
 
 void cgen::set_m (int m_new) { m = m_new; }
+
+void cgen::set_deg_diff (int deg_diff_new) { deg_diff = deg_diff_new; }
+
+void cgen::set_D_index (int D_index_new) { D_index = D_index_new; }
 
 void cgen::set_n_i (vector < int > n_i_new) { n_i = n_i_new; }
 

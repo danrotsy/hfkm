@@ -57,26 +57,12 @@ int main(int argc, char** argv) {
     cout << "Computing d_{" << to_string(a) << "," << to_string(m) <<
         "}...\n";
     diff di = diff(grd, ci, cim1);
-    vector < vector < bool > > divals = di.get_d();
-    Mat < GF2 > Di;
-    long rowsDi = divals.size();
-    long colsDi = divals[0].size();
-    Di.SetDims(rowsDi, colsDi);
-    for (long i = 0; i < rowsDi; i++) {
-        for (long j = 0; j < colsDi; j++) {
-            Di[i][j] = divals[i][j];
-        }
-    }
-    vector < vector < bool > > dip1vals = dip1.get_d();
-    Mat < GF2 > Dip1;
-    long rowsDip1 = dip1vals.size();
-    long colsDip1 = dip1vals[0].size();
-    Dip1.SetDims(rowsDip1, colsDip1);
-    for (long i = 0; i < rowsDip1; i++) {
-        for (long j = 0; j < colsDip1; j++) {
-            Dip1[i][j] = dip1vals[i][j];
-        }
-    }
+    Mat < GF2 > Di = di.get_D();
+    /* cout << "Di:\n" << Di << "\n"; */
+    Mat < GF2 > Dip1 = dip1.get_D();
+    /* cout << "Dip1:\n" << Dip1 << "\n"; */
+    int rowsDi = Di.NumRows(); int colsDi = Di.NumCols();
+    int rowsDip1 = Dip1.NumRows(); int colsDip1 = Dip1.NumCols();
     cout << "d_{" << to_string(a) << "," <<  to_string(m) << "}: " 
         << to_string(rowsDi) << "x" << to_string(colsDi) << ", d_{" 
         << to_string(a) << "," << to_string(m + 1) << "}: "

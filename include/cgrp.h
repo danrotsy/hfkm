@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 #include <cmath>
+#include <unordered_map>
 #include "gridio.h"
 #include "cgen.h"
 #include "expsni.h"
@@ -47,6 +48,8 @@ private:
     vector < cgen > basis;
     /* The generators of C^-(a, m) independent of U_i. */
     vector < cgen > base_gens;
+    /* To count how many generators have been added. */
+    int added;
     /* Finds all generators (with coefficients in F[U_1, ..., U_n]) given the
      * difference in Alexander grading. */
     void add_all_relevant_gens_to_basis (int da);

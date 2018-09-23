@@ -8,6 +8,7 @@
 #include "cgrp.h"
 
 cgrp::cgrp (int a_in, int m_in, string dir_in, int k_in) {
+    added = 0;
     a = a_in;
     m = m_in;
     dir = dir_in;
@@ -43,15 +44,21 @@ void cgrp::add_all_relevant_gens_to_basis (int da) {
     int m_add = m + (2 * da);
     vector < cgen > base_gens_read = read_am(dir, a_add, m_add, k);
     int num_bg = base_gens_read.size();
-    vector< vector < int > > exps = all_ni(k, da);
+    vector < vector < int > > exps = all_ni(k, da);
     int num_ni = exps.size();
+    /* Read all base gens from file, and save D indices. */
     for (int i = 0; i < num_bg; i++) {
         base_gens.push_back(base_gens_read[i]);
+        base_gens[i].set_D_index(added);
+        base_gens[i].set_deg_diff(da);
+        base_gens[i].set_a(a_add);
+        added += num_ni;
     }
-    for (int i = 0; i < num_ni; i++) {
-        vector < int > ni = exps[i];
-        for (int j = 0; j < num_bg; j++) {
-            cgen g = cgen(base_gens_read[j].get_p());
+    /* Save the rest of the generators. */
+    for (int i = 0; i < num_bg; i++) {
+        for (int j = 0; j < num_ni; j++) {
+            vector < int > ni = exps[j];
+            cgen g = cgen(base_gens_read[i].get_p());
             g.set_n_i(ni);
             basis.push_back(g);
         }
