@@ -21,7 +21,7 @@ grid::grid ( vector < int > x_in,  vector < int > o_in) {
         path.push_back(tmp);
         tmp[0] = (float)(column + 0.5); tmp[1] = (float)(o[column] + 0.5);
         path.push_back(tmp);
-        vector<int>::iterator it = find_if (x.begin(), x.end(), 
+        vector < int > :: iterator it = find_if (x.begin(), x.end(), 
             Is_Int(o[column]));
         column = it - x.begin();
     }
@@ -51,7 +51,7 @@ grid::grid ( vector < int > x_in,  vector < int > o_in) {
 }
 
 void grid::find_gens (string dir, int n) {
-    cout << "Finding the next " << to_string(n) << " generators of " << dir
+    cout << "Finding chunk of generators of " << dir
         << "...\n";
     cout << "Loading first Johnson Trotter permutation...\n";
     /* Finds the starting jtp using gridio.h. */
@@ -246,7 +246,7 @@ int grid::calc_m (jtp j) {
     if (!j.get_m_prev_set()) { /* If it is the first permutation of J.T.A.: */
         return (1 - k);
     } else { /* If it is any other permutation of J.T.A.: */
-        /* Assigning MASLOV GRADING using the Johnson-Trotter algorithm 
+        /* Assigning MASLOV GRADING using the Johnson Trotter algorithm 
          * (J.T.A.): M(x) - M(y) = P_x(r) + P_y(r) - 2 W(r) */
         int m_y = j.get_m_prev();
         vector < int > x = j.get_p();

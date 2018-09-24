@@ -23,7 +23,8 @@ diff::diff (grid g, cgrp dom, cgrp ran) {
         /* Starting progress bar. */
         int cap = num_dom_base_gens * num_ran_base_gens;
         boost::progress_display d_progress(cap);
-        /* Editing D block by block, where each block corresponds to (x, y). */
+        /* Editing D block by block, where each block corresponds to 
+         * (x, y). */
         for (int i = 0; i < num_dom_base_gens; i++) {
             for (int j = 0; j < num_ran_base_gens; j++) {
                 /* Get rectangles between x and y. */
@@ -37,11 +38,6 @@ diff::diff (grid g, cgrp dom, cgrp ran) {
                     bool r2valid = is_valid(g, r2, x, y);
                     /* ... and only one rectangle is valid: */
                     if (r1valid != r2valid) {
-                        /* cout << "Flow found at: x = " << x.tos() << ", y = "
-                            << y.tos() << ", x.a = " << to_string(x.get_a())
-                            << ", y.a = " << to_string(y.get_a()) << 
-                            ", x.m = " << to_string(x.get_m()) << 
-                            ", y.m = " << to_string(y.get_m()) << "\n"; */
                         /* Find intersection points of valid rectangle: */
                         vector < int > olst;
                         if (r1valid) {
@@ -53,16 +49,9 @@ diff::diff (grid g, cgrp dom, cgrp ran) {
                         gen_block(g, x, y, olst);
                     }
                     if (r1valid and r2valid) {
-                        /* cout << "Two valid rectangles. \n"; */
                         vector < int > r1olst = get_rect_olst(g, r1);
                         vector < int > r2olst = get_rect_olst(g, r2);
                         if (r1olst != r2olst) {
-                            /* cout << "Two flows found at: x = " << x.tos() <<
-                                ", y = " << y.tos() << ", x.a = " << 
-                                to_string(x.get_a()) << ", y.a = " << 
-                                to_string(y.get_a()) << ", x.m = " <<
-                                to_string(x.get_m()) << ", y.m = " <<
-                                to_string(y.get_m()) << "\n"; */
                             gen_block(g, x, y, r1olst);
                             gen_block(g, x, y, r2olst);
                         }
@@ -91,9 +80,6 @@ bool diff::is_valid (grid g, rectangle r, cgen x, cgen y) {
     if ((g.p_x4(x.get_p(), r) + g.p_x4(y.get_p(), r)) != 4) {
         return false;
     }
-    /* cout << "(DEBUGGING) x.a = " << to_string(x.get_a()) << 
-        ", y.a = " << to_string(y.get_a()) << ", o_ct(r) = " <<
-        to_string(g.o_ct(r)) << "\n"; */
     /* Intersection number is correct. */
     if (y.get_a() - x.get_a() != g.o_ct(r)) {
         return false;
@@ -112,12 +98,8 @@ vector < int > diff::get_rect_olst (grid g, rectangle r) {
 
 void diff::update (grid g, int deg) {
     if (ui_hash.count(deg) == 0) {
-        /* cout << "(DEBUGGING) ADDED ui_hash at deg = " << to_string(deg) << 
-            "\n"; */
         ui_hash[deg] = all_ni(g.get_k(), deg);
     }
-    /* cout << "(DEBUGGING) Updated ui_hash at deg = " << 
-       to_string(deg) << "\n"; */
 }
 
 void diff::gen_block (grid g, cgen x, cgen y, vector < int > olst) {
@@ -132,7 +114,8 @@ void diff::gen_block (grid g, cgen x, cgen y, vector < int > olst) {
         for (int j = 0; j < g.get_k(); j++) {
             y_ni[j] = x_ni[j] + olst[j];
         }
-        vector < vector<int> >::iterator it = find(ui_hash[y.get_deg_diff()].begin(),
+        vector < vector < int > > :: iterator it = 
+                find(ui_hash[y.get_deg_diff()].begin(),
                 ui_hash[y.get_deg_diff()].end(), y_ni);
         int j = distance(ui_hash[y.get_deg_diff()].begin(), it);
         D[y.get_D_index() + j][x.get_D_index() + i] = 1;
