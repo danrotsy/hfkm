@@ -111,9 +111,13 @@ vector < vector < int > > list_all_am (string dir) {
             if ((am_filename != "jtp") and (am_filename != "done")) {
                 vector < string > tmp_str;
                 boost::split(tmp_str, am_filename, boost::is_any_of("_"));
-                tmp.push_back(stoi(tmp_str[0]));
-                tmp.push_back(stoi(tmp_str[1]));
-                all_am.push_back(tmp);
+                try {
+                    tmp.push_back(stoi(tmp_str[0]));
+                    tmp.push_back(stoi(tmp_str[1]));
+                    all_am.push_back(tmp);
+                } catch (...) {
+                    cout << "[CAUTION]: Unknown file in knot directory.\n";
+                }
             }
         }
     }
