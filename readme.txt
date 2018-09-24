@@ -12,28 +12,29 @@ Table of contents:
 
 1. Install
 
+    Dependencies: boost, NTL
+
+    Instructions:
+
+        1.  Make sure dependencies are installed.
+            (boost)     https://www.boost.org
+            (NTL)       http://shoup.net/ntl/
+
+        2.  Download the program from github:
+            https://github.com/danrotsy/hfkm.git
+
+        3.  If downloaded as a zip, unzip.
+
+        4.  Change directories to program folder, hfkm. For example:
+            [usr]@[hostname] [Downloads] $    cd hfkm
+
+        5.  Make the program with install, and the executables. 
+            [usr]@[hostname] [hfkm] $    make install
+
+        6.  Copy the executables from the bin folder to use, and add to $PATH
+            if desired.
+
 2. Command usage:
-
-    diff:   ./diff <dir> <a> <m>
-            ./diff <dir> <i>
-
-            Used to find the differential of a given chain group, or a grid 
-            generator.
-
-            - <dir>:    The directory in which the knot generators were saved.
-
-            - <a>:      The Alexander grading.
-
-            - <m>:      The Maslov grading.
-
-            - <i>:      The factoradic index of a grid permutation.
-
-            *NOTE:* the generators must already have been created by gen
-            beforehand.
-
-            Example: ./diff tr5x5 0
-
-            Example: ./diff tr5x5 0 0
 
     gen:    ./gen <x_list> <o_list> <dir>
 
@@ -70,21 +71,6 @@ Table of contents:
 
             Example: ./hfkm tr5x5 0 0
 
-    itop:   ./itop <k>
-            ./itop <k> <i>
-
-            Used to find permutations of size k given factoradic indices. If 
-            no index is specified, then all permutations of size k, and their
-            indices, are listed.
-
-            - <k>:      Permutation size, or equivalently, grid size.
-
-            - <i>:      Factoradic index.
-
-            Example: ./itop 3
-            
-            Example: ./itop 3 0
-
 3. Example on *NIX systems:
 
     To find HFK^- of the right handed trefoil and (a,m) bigrading (0,0):
@@ -95,11 +81,16 @@ Table of contents:
 
 4. Uninstall:
 
+    1.  Remove executables from whatever location they were moved to. Remove 
+        them from $PATH as well, if they were added.
+
+    2.  Delete the hfkm directory, wherever it was moved to.
+
 5. Useful information:
 
     To see all the bigradings of generators on the grid diagram:
 
-    [usr]@[hostname] [hfk_dir] $    ls <dir>
+    [usr]@[hostname] [hfkm_dir] $    ls <dir>
 
     This will list all files <a>_<m>.txt, corresponding to (a,m) bigradings 
     for which there is at least one generator on the grid diagram. The files
