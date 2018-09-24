@@ -53,5 +53,5 @@ hfkm:
 	-lgmp
 clean:
 	# Cleaning object and binary files.
-	rm build/*;
-	rm bin/*
+	rm -r build
+	rm -r bin
