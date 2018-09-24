@@ -28,7 +28,7 @@ Table of contents:
         4.  Change directories to program folder, hfkm. For example:
             [usr]@[hostname] [Downloads] $    cd hfkm
 
-        5.  Make the program with install, and the executables. 
+        5.  Create the executables. 
             [usr]@[hostname] [hfkm] $    make install
 
         6.  Copy the executables from the bin folder to use, and add to $PATH

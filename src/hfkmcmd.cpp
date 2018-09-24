@@ -54,11 +54,11 @@ int main(int argc, char** argv) {
         "}...\n";
     /* Computing the differentials at the desired gradings. */
     diff dip1 = diff(grd, cip1, ci);
+    Mat < GF2 > Dip1 = dip1.get_D();
     cout << "Computing d_{" << to_string(a) << "," << to_string(m) <<
         "}...\n";
     diff di = diff(grd, ci, cim1);
     Mat < GF2 > Di = di.get_D();
-    Mat < GF2 > Dip1 = dip1.get_D();
     int rowsDi = Di.NumRows(); int colsDi = Di.NumCols();
     int rowsDip1 = Dip1.NumRows(); int colsDip1 = Dip1.NumCols();
     cout << "d_{" << to_string(a) << "," <<  to_string(m) << "}: " 
