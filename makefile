@@ -1,5 +1,6 @@
 install:
 	# Builds all commands to bin. *CHECK DEPENDENCIES* (see readme.txt)
+	mkdir bin; mkdir build
 	g++ -std=c++11 -I include -c src/jta.cpp -o build/jta.o
 	g++ -std=c++11 -I include -c src/gridgen.cpp -o build/gridgen.o
 	g++ -std=c++11 -I include -c src/rect.cpp -o build/rect.o
